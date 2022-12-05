@@ -1,0 +1,114 @@
+highlightable-input[data-theme="spectrum"] {
+  font-family: adobe-clean-han-simplified-c, SimSun, Heiti SC Light,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+  box-sizing: border-box;
+  border: var(
+      --spectrum-alias-input-border-size,
+      var(--spectrum-global-dimension-static-size-10, 1px)
+    )
+    solid;
+  border-radius: var(
+    --spectrum-textfield-border-radius,
+    var(
+      --spectrum-alias-border-radius-regular,
+      var(--spectrum-global-dimension-size-50, 4px)
+    )
+  );
+  padding: 4px
+    var(
+      --spectrum-textfield-padding-x,
+      var(--spectrum-global-dimension-size-150, 12px)
+    )
+    4px
+    calc(
+      var(
+          --spectrum-textfield-padding-x,
+          var(--spectrum-global-dimension-size-150, 12px)
+        ) - 1px
+    );
+  text-indent: 0;
+  width: 100%;
+  height: var(
+    --spectrum-textfield-height,
+    var(
+      --spectrum-alias-single-line-height,
+      var(--spectrum-global-dimension-size-400, 32px)
+    )
+  );
+  font-size: var(
+    --spectrum-textfield-text-size,
+    var(
+      --spectrum-alias-font-size-default,
+      var(--spectrum-global-dimension-font-size-100, 14px)
+    )
+  );
+  line-height: var(
+    --spectrum-textfield-text-line-height,
+    var(
+      --spectrum-alias-body-text-line-height,
+      var(--spectrum-global-font-line-height-medium, 1.5)
+    )
+  );
+  transition: border-color var(--spectrum-global-animation-duration-100, 130ms)
+      ease-in-out,
+    box-shadow var(--spectrum-global-animation-duration-100, 130ms) ease-in-out;
+  outline: 0;
+  overflow: visible;
+  background-color: var(
+    --spectrum-textfield-background-color,
+    var(--spectrum-global-color-gray-50, #fff)
+  );
+  border-color: var(
+    --spectrum-textfield-border-color,
+    var(--spectrum-alias-border-color, var(--spectrum-gray-500, #909090))
+  );
+  color: var(
+    --spectrum-textfield-text-color,
+    var(--spectrum-alias-text-color, var(--spectrum-gray-800, #222))
+  );
+}
+
+highlightable-input[data-theme="spectrum"][aria-multiline="true"] {
+  height: auto;
+  min-height: var(--spectrum-global-dimension-size-700, 56px);
+  resize: none;
+  overflow: auto;
+}
+
+highlightable-input[data-theme="spectrum"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="spectrum"][aria-placeholder]:empty::before {
+  color: rgba(0, 0, 0, 0.25);
+}
+
+highlightable-input[data-theme="spectrum"]:hover {
+  border-color: var(
+    --spectrum-textfield-border-color-hover,
+    var(--spectrum-alias-border-color-hover, var(--spectrum-gray-600, #6d6d6d))
+  );
+}
+
+highlightable-input[data-theme="spectrum"]:focus {
+  border-color: var(
+    --spectrum-textfield-border-color-key-focus,
+    var(--spectrum-alias-border-color-focus, var(--spectrum-blue-800, #147af3))
+  );
+}
+
+highlightable-input[data-theme="spectrum"][aria-disabled="true"] {
+  background-color: var(
+    --spectrum-textfield-background-color-disabled,
+    var(--spectrum-global-color-gray-200, var(--spectrum-gray-200, #e6e6e6))
+  );
+  border-color: var(
+    --spectrum-textfield-border-color-disabled,
+    var(--spectrum-alias-border-color-transparent, transparent)
+  );
+  color: var(
+    --spectrum-textfield-text-color-disabled,
+    var(--spectrum-alias-text-color-disabled, var(--spectrum-gray-400, #b1b1b1))
+  );
+  -webkit-text-fill-color: currentColor;
+}

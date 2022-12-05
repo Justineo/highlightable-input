@@ -1,0 +1,43 @@
+highlightable-input[data-theme="atlassian"] {
+  height: calc(2.57em + 4px);
+  padding: 8px 6px;
+  background-color: var(--ds-background-input, #fafbfc);
+  border: 2px solid var(--ds-border-input, #dfe1e6);
+  color: var(--ds-text, #091e42);
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.42857;
+  max-width: 100%;
+  transition: background-color 0.2s ease-in-out 0s,
+    border-color 0.2s ease-in-out 0s;
+  vertical-align: top;
+}
+
+highlightable-input[data-theme="atlassian"][aria-multiline="true"] {
+  min-height: 56px;
+  padding: 6px;
+}
+
+highlightable-input[data-theme="atlassian"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="atlassian"][aria-placeholder]:empty::before {
+  color: var(--ds-text-subtlest, #7a869a);
+}
+
+highlightable-input[data-theme="atlassian"]:hover {
+  background-color: var(--ds-background-input-hovered, #ebecf0);
+  border-color: var(--ds-border-input, #dfe1e6);
+}
+
+highlightable-input[data-theme="atlassian"]:focus {
+  background-color: var(--ds-background-input-pressed, #ffffff);
+  border-color: var(--ds-border-focused, #4c9aff);
+}
+
+highlightable-input[data-theme="atlassian"][aria-disabled="true"] {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, 0.25);
+}

@@ -1,0 +1,37 @@
+highlightable-input[data-theme="arco"] {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-small, 2px);
+  padding: 4px 12px;
+  background-color: var(--color-fill-2, #f2f3f5);
+  line-height: 1.5715;
+  color: var(--color-text-1, #1d2129);
+  font-size: 14px;
+  transition: color 0.1s linear, border-color 0.1s linear,
+    background-color 0.1s linear;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+highlightable-input[data-theme="arco"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="arco"][aria-placeholder]:empty::before {
+  color: var(--color-text-3, #86909c);
+}
+
+highlightable-input[data-theme="arco"]:hover {
+  background-color: var(--color-fill-3, #e5e6eb);
+}
+
+highlightable-input[data-theme="arco"]:focus {
+  border-color: rgb(var(--primary-6, 22, 93, 255));
+  background-color: var(--color-bg-2, #fff);
+}
+
+highlightable-input[data-theme="arco"][aria-disabled="true"] {
+  background-color: var(--color-fill-2, #f2f3f5);
+  cursor: not-allowed;
+  color: var(--color-text-4, #c9cdd4);
+  border-color: transparent;
+}

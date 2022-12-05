@@ -1,0 +1,40 @@
+highlightable-input[data-theme="fluent"] {
+  height: 32px;
+  padding: calc((30px - 1.4em) / 2) 8px;
+  border: 1px solid rgb(96, 94, 92);
+  border-radius: 2px;
+  background: rgb(255, 255, 255);
+  font-weight: 400;
+  line-height: 1.4;
+  color: rgb(50, 49, 48);
+}
+
+highlightable-input[data-theme="fluent"][aria-multiline] {
+  height: auto;
+  min-height: 60px;
+  padding: 6px 8px;
+  line-height: 17px;
+}
+
+highlightable-input[data-theme="fluent"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="fluent"][aria-placeholder]:empty::before {
+  color: rgb(96, 94, 92);
+}
+
+highlightable-input[data-theme="fluent"]:hover {
+  border-color: rgb(50, 49, 48);
+}
+
+highlightable-input[data-theme="fluent"]:focus {
+  border: 1px solid rgb(0, 120, 212);
+  box-shadow: inset 0 0 0 1px rgb(0, 120, 212);
+}
+
+highlightable-input[data-theme="fluent"][aria-disabled="true"] {
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: not-allowed;
+  color: rgba(0, 0, 0, 0.25);
+}

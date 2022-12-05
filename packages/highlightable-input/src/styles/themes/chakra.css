@@ -1,0 +1,61 @@
+highlightable-input[data-theme="chakra"] {
+  width: 100%;
+  min-width: 0px;
+  outline: transparent solid 2px;
+  outline-offset: 2px;
+  transition-property: var(
+    --chakra-transition-property-common,
+    background-color,
+    border-color,
+    color,
+    fill,
+    stroke,
+    opacity,
+    box-shadow,
+    transform
+  );
+  transition-duration: var(--chakra-transition-duration-normal, 200ms);
+  font-size: var(--chakra-fontSizes-md, 1rem);
+  padding-inline: var(--chakra-space-4, 1rem);
+  padding-block: calc(
+    (
+        var(--chakra-sizes-10, 2.5rem) - var(--chakra-lineHeights-short, 1.375) *
+          1em - 2px
+      ) / 2
+  );
+  height: var(--chakra-sizes-10, 2.5rem);
+  line-height: var(--chakra-lineHeights-short, 1.375);
+  border-radius: var(--chakra-radii-md, 0.375rem);
+  border: 1px solid var(--chakra-colors-chakra-border-color, #e2e8f0);
+}
+
+highlightable-input[data-theme="chakra"][aria-multiline="true"] {
+  padding-top: var(--chakra-space-2, 0.5rem);
+  padding-bottom: var(--chakra-space-2, 0.5rem);
+  min-height: var(--chakra-sizes-20, 5rem);
+  vertical-align: top;
+}
+
+highlightable-input[data-theme="chakra"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="chakra"][aria-placeholder]:empty::before {
+  color: var(--chakra-colors-chakra-placeholder-color, #718096);
+}
+
+highlightable-input[data-theme="chakra"]:hover {
+  border-color: var(--chakra-colors-gray-300, #cbd5e0);
+}
+
+highlightable-input[data-theme="chakra"]:focus {
+  border-color: rgb(49, 130, 206);
+  box-shadow: 0px 0px 0px 1px rgb(49, 130, 206);
+  outline: none;
+}
+
+highlightable-input[data-theme="chakra"][aria-disabled="true"] {
+  border-color: var(--chakra-colors-chakra-border-color, #e2e8f0);
+  opacity: 0.4;
+  cursor: not-allowed;
+}

@@ -1,0 +1,154 @@
+highlightable-input[data-theme="lightning"] {
+  font-size: 13px;
+  padding-top: 0;
+  padding-right: var(
+    --slds-c-input-spacing-horizontal-end,
+    var(--sds-c-input-spacing-horizontal-end, 1rem)
+  );
+  padding-bottom: 0;
+  padding-left: var(
+    --slds-c-input-spacing-horizontal-start,
+    var(--sds-c-input-spacing-horizontal-start, 0.75rem)
+  );
+  width: 100%;
+  min-height: calc(1.875rem + 2px);
+  line-height: 1.875rem;
+  border: 1px solid
+    var(--slds-c-input-color-border, var(--sds-c-input-color-border, #c9c9c9));
+  border-radius: var(
+    --slds-c-input-radius-border,
+    var(--sds-c-input-radius-border, 0.25rem)
+  );
+  background-color: var(
+    --slds-c-input-color-background,
+    var(--sds-c-input-color-background, #fff)
+  );
+  color: var(--slds-c-input-text-color, var(--sds-c-input-text-color));
+  box-shadow: var(--slds-c-input-shadow, var(--sds-c-input-shadow));
+  transition: border 0.1s linear, background-color 0.1s linear;
+}
+
+highlightable-input[data-theme="lightning"][aria-multiline="true"] {
+  line-height: 1.5;
+  min-height: var(
+    --slds-c-textarea-sizing-min-height,
+    var(--sds-c-textarea-sizing-min-height)
+  );
+  width: 100%;
+  padding: var(
+      --slds-c-textarea-spacing-block-start,
+      var(--sds-c-textarea-spacing-block-start, 0.5rem)
+    )
+    var(
+      --slds-c-textarea-spacing-inline-end,
+      var(--sds-c-textarea-spacing-inline-end, 0.75rem)
+    )
+    var(
+      --slds-c-textarea-spacing-block-end,
+      var(--sds-c-textarea-spacing-block-end, 0.5rem)
+    )
+    var(
+      --slds-c-textarea-spacing-inline-start,
+      var(--sds-c-textarea-spacing-inline-start, 0.75rem)
+    );
+  background-color: var(
+    --slds-c-textarea-color-background,
+    var(--sds-c-textarea-color-background, #fff)
+  );
+  color: var(--slds-c-textarea-text-color, var(--sds-c-textarea-text-color));
+  border: 1px solid
+    var(
+      --slds-c-textarea-color-border,
+      var(--sds-c-textarea-color-border, #c9c9c9)
+    );
+  border-radius: var(
+    --slds-c-textarea-radius-border,
+    var(--sds-c-textarea-radius-border, 0.25rem)
+  );
+  box-shadow: var(--slds-c-textarea-shadow, var(--sds-c-textarea-shadow));
+  resize: vertical;
+  transition: border 0.1s linear, background-color 0.1s linear;
+}
+
+highlightable-input[data-theme="lightning"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="lightning"][aria-placeholder]:empty::before {
+  color: #747474;
+}
+
+highlightable-input[data-theme="lightning"]:focus {
+  --slds-c-input-color-border: var(
+    --slds-c-input-color-border-focus,
+    var(--sds-c-input-color-border-focus, #1b96ff)
+  );
+  --slds-c-input-background-color: var(
+    --slds-c-input-color-background-focus,
+    var(--sds-c-input-color-background-focus, #fff)
+  );
+  --slds-c-input-text-color: var(
+    --slds-c-input-text-color-focus,
+    var(--sds-c-input-text-color-focus)
+  );
+  --slds-c-input-shadow: var(
+    --slds-c-input-shadow-focus,
+    var(--sds-c-input-shadow-focus, 0 0 3px #0176d3)
+  );
+  outline: 0;
+}
+
+highlightable-input[data-theme="lightning"][aria-multiline="true"]:focus {
+  outline: 0;
+  color: var(
+    --slds-c-textarea-text-color-focus,
+    var(--sds-c-textarea-text-color-focus)
+  );
+  background-color: var(
+    --slds-c-textarea-color-background-focus,
+    var(--sds-c-textarea-color-background-focus, #fff)
+  );
+  border-color: var(
+    --slds-c-textarea-color-border-focus,
+    var(--sds-c-textarea-color-border-focus, #1b96ff)
+  );
+  -webkit-box-shadow: var(
+    --slds-c-textarea-shadow-focus,
+    var(--sds-c-textarea-shadow-focus, 0 0 3px #0176d3)
+  );
+  box-shadow: var(
+    --slds-c-textarea-shadow-focus,
+    var(--sds-c-textarea-shadow-focus, 0 0 3px #0176d3)
+  );
+}
+
+highlightable-input[data-theme="lightning"][aria-readonly="true"] {
+  --slds-c-input-spacing-horizontal-start: 0;
+  --slds-c-input-color-border: transparent;
+  --slds-c-input-color-background: transparent;
+  font-size: 0.875rem;
+}
+
+highlightable-input[data-theme="lightning"][aria-multiline="true"][aria-readonly="true"] {
+  margin: 0;
+  padding: 0;
+  min-height: 0;
+  line-height: normal;
+  border: none;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+  box-shadow: none;
+  transition: none;
+  overflow: visible;
+  resize: none;
+}
+
+highlightable-input[data-theme="lightning"][aria-disabled="true"],
+highlightable-input[data-theme="lightning"][aria-multiline="true"][aria-disabled="true"] {
+  background-color: #f3f3f3;
+  border-color: #c9c9c9;
+  color: #444;
+  cursor: not-allowed;
+  user-select: none;
+}

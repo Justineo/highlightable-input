@@ -1,0 +1,46 @@
+highlightable-input {
+  box-sizing: border-box;
+  display: inline-block;
+  overflow: hidden;
+  width: 320px;
+  white-space: pre;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  font-size: 14px;
+  cursor: text;
+}
+
+highlightable-input[contenteditable] {
+  -webkit-user-modify: read-write-plaintext-only;
+}
+
+highlightable-input[aria-multiline="true"] {
+  overflow: auto;
+  height: auto;
+  white-space: pre-wrap;
+  resize: both;
+}
+
+highlightable-input[aria-placeholder]::before {
+  content: attr(aria-placeholder);
+  position: absolute;
+  z-index: -1;
+  color: transparent;
+}
+
+highlightable-input:empty::after {
+  content: "\200b";
+}
+
+highlightable-input[aria-disabled="true"] {
+  cursor: default;
+}
+
+highlightable-input:focus {
+  text-overflow: clip;
+  outline: none;
+}
+
+highlightable-input mark {
+  color: inherit;
+}

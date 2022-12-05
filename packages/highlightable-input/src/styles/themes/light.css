@@ -1,0 +1,52 @@
+highlightable-input[data-theme="light"] {
+  width: 300px;
+  height: 32px;
+  padding: 6px 12px;
+  border: 1px solid #d3d9e6;
+  background-color: #fff;
+  color: #282c33;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 18px;
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.2s;
+}
+
+
+highlightable-input[data-theme="light"][aria-multiline="true"] {
+  height: auto;
+  line-height: 1.4;
+  min-height: 76.8px;
+  padding: 8px 12px;
+  resize: none;
+  overflow: auto;
+}
+
+highlightable-input[data-theme="light"][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme="light"][aria-placeholder]:empty::before {
+  color: #848b99;
+}
+
+highlightable-input[data-theme="light"]:hover {
+  border-color: #a8b0bf;
+}
+
+highlightable-input[data-theme="light"][aria-readonly="true"] {
+  border-color: #d3d9e6;
+  background-color: #f6f7fa;
+}
+
+highlightable-input[data-theme="light"]:focus {
+  border: 1px solid #0052cc;
+  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.2);
+}
+
+highlightable-input[data-theme="light"][aria-disabled="true"] {
+  background-color: #f6f7fa;
+  border-color: #e2e6f0;
+  color: #a8b0bf;
+  cursor: not-allowed;
+}

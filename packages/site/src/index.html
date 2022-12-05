@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>&lt;highlightable-input&gt;</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0052cc" />
+    <link rel="icon" type="image/svg+xml" href="/hi.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap&text=%3Chighlightable-input%3E"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./index.css" />
+    <style id="custom-style"></style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a href="https://github.com/Justineo"
+          >&lt;<mark>highlight</mark>able-<u>input</u>&gt;</a
+        >
+      </h1>
+    </header>
+    <main spellcheck="false">
+      <select id="theme" size="12">
+        <option value="light" selected>Light Design</option>
+        <option value="antd">Ant Design</option>
+        <option value="arco">Arco Design</option>
+        <option value="atlassian">Atlassian Design</option>
+        <option value="bootstrap">Bootstrap</option>
+        <option value="carbon">Carbon Design</option>
+        <option value="chakra">Chakra UI</option>
+        <option value="fluent">Fluent Design</option>
+        <option value="lightning">Lightning</option>
+        <option value="semi">Semi Design</option>
+        <option value="spectrum">Spectrum</option>
+        <option value="none">None</option>
+      </select>
+      <section id="app">
+        <section>
+          <h2><label for="default">Default</label></h2>
+          <highlightable-input id="default" data-theme="light"
+            >Hello, <mark class="mention">@Chase</mark>! <mark class="hashtag">#Shepherd</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2>
+            <label for="single-placeholder">Singleline + placeholder</label>
+          </h2>
+          <highlightable-input
+            id="single-placeholder"
+            role="textbox"
+            aria-placeholder="Please enter..."
+            data-theme="light"
+            >Hello, <mark class="mention">@Rocky</mark>! <mark class="hashtag">#Mixed</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2><label for="multi">Multiline</label></h2>
+          <highlightable-input
+            id="multi"
+            role="textbox"
+            aria-multiline="true"
+            data-theme="light"
+            >Hello, <mark class="mention">@Skye</mark>! <mark class="hashtag">#Cockapoo</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2>
+            <label for="multi-placeholder">Multiline + placeholder</label>
+          </h2>
+          <highlightable-input
+            id="multi-placeholder"
+            role="textbox"
+            aria-multiline="true"
+            aria-placeholder="Please enter..."
+            data-theme="light"
+            >Hello, <mark class="mention">@Marshall</mark>! <mark class="hashtag">#Dalmatian</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2><label for="readonly">Readonly</label></h2>
+          <highlightable-input
+            id="readonly"
+            aria-readonly="true"
+            data-theme="light"
+            >Hello, <mark class="mention">@Zuma</mark>! <mark class="hashtag">#Labrador</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2><label for="disabled">Disabled</label></h2>
+          <highlightable-input
+            id="disabled"
+            aria-disabled="true"
+            data-theme="light"
+            >Hello, <mark class="mention">@Rubble</mark>! <mark class="hashtag">#Bulldog</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2><label for="multi-readonly">Multiline + Readonly</label></h2>
+          <highlightable-input
+            id="multi-readonly"
+            role="textbox"
+            aria-multiline="true"
+            aria-readonly="true"
+            data-theme="light"
+            >Hello, <mark class="mention" data-theme="light">@Everest</mark>! <mark class="hashtag">#Husky</mark></highlightable-input
+          >
+        </section>
+        <section>
+          <h2><label for="multi-disabled">Multiline + Disabled</label></h2>
+          <highlightable-input
+            id="multi-disabled"
+            role="textbox"
+            aria-multiline="true"
+            aria-disabled="true"
+            data-theme="light"
+            >Hello, <mark class="mention">@Tracker</mark>! <mark class="hashtag">#Chihuahua</mark></highlightable-input
+          >
+        </section>
+        <section id="vue-app"></section>
+        <section id="react-app"></section>
+        <section class="row">
+          <h2><label for="styler">Mark style</label></h2>
+          <highlightable-input
+            id="styler"
+            role="textbox"
+            aria-multiline="true"
+            data-theme="light"
+            >highlightable-input[aria-disabled] mark {
+  opacity: 0.6;
+}
+
+highlightable-input .mention {
+  margin: 1px;
+  border-radius: 3px;
+  padding: 1px;
+  background: gold;
+  border: 1px solid goldenrod;
+  color: darkgoldenrod;
+}
+
+highlightable-input .hashtag {
+  background: none;
+  font-weight: 600;
+  color: steelblue;
+}
+</highlightable-input>
+        </section>
+      </section>
+    </main>
+    <footer>
+      <p>
+        Released under the MIT License by
+        <a href="https://github.com/Justineo">@Justineo</a>.
+      </p>
+    </footer>
+    <script type="module" src="./index.ts"></script>
+  </body>
+</html>
