@@ -124,41 +124,139 @@ import 'highlightable-input/themes/light.css'
 <highlightable-input data-theme="light"></highlightable-input>
 ```
 
-You can also add your own theme:
+Available themes:
+
+- `light` ([Light Design](https://veui.dev))
+- `antd` ([Ant Design](https://ant.design))
+- `arco` ([Arco Design](https://arco.design))
+- `atlassian` ([Atlassian Design](https://atlassian.design))
+- `bootstrap` ([Bootstrap](https://getbootstrap.com))
+- `carbon` ([Carbon Design System](https://carbondesignsystem.com))
+- `chakra` ([Chakra UI](https://chakra-ui.com))
+- `fluent` ([Fluent UI](https://developer.microsoft.com/fluentui))
+- `lightning` ([Lightning Design System](https://www.lightningdesignsystem.com))
+- `semi` ([Semi Design](https://semi.design))
+- `spectrum` ([Spectrum Design System](https://spectrum.adobe.com))
+
+You can add more themes or refine current themes [here](https://github.com/Justineo/highlightable-input/tree/main/packages/highlightable-input/src/styles/themes).
+
+You can also add your own theme in your own project:
 
 ```css
-highlightable-input[data-theme="custom"] {
+highlightable-input[data-theme='custom'] {
   /* default styles */
 }
 
-highlightable-input[data-theme="custom"][aria-multiline="true"] {
+highlightable-input[data-theme='custom'][aria-multiline='true'] {
   /* multiline styles */
 }
 
-highlightable-input[data-theme="custom"][aria-placeholder]::before {
+highlightable-input[data-theme='custom'][aria-placeholder]::before {
   /* hidden placeholder styles */
 }
 
-highlightable-input[data-theme="custom"][aria-placeholder]:empty::before {
+highlightable-input[data-theme='custom'][aria-placeholder]:empty::before {
   /* visible placeholder styles */
 }
 
-highlightable-input[data-theme="custom"]:hover {
+highlightable-input[data-theme='custom']:hover {
   /* hover styles */
 }
 
-highlightable-input[data-theme="custom"][aria-readonly="true"] {
+highlightable-input[data-theme='custom'][aria-readonly='true'] {
   /* readonly styles */
 }
 
-highlightable-input[data-theme="custom"]:focus {
+highlightable-input[data-theme='custom']:focus {
   /* focus styles */
 }
 
-highlightable-input[data-theme="light"][aria-disabled="true"] {
+highlightable-input[data-theme='light'][aria-disabled='true'] {
   /* disabled styles */
 }
+```
 
+## Vue component
+
+### Usage
+
+```vue
+<script setup>
+import { ref } from 'vue'
+import HighlightableInput from 'highlightable-input/vue'
+
+const text = ref('Hello, @Chickaletta!')
+const rules = [
+  /* highlight rules */
+]
+</script>
+
+<template>
+  <highlightable-input v-model="text" :highlight="rules" />
+</template>
+```
+
+### Props
+
+```ts
+interface HighlightableInputProps {
+  modelValue?: string
+  highlight: HighlightRule | Array<HighlightRule> | ((value: string) => string)
+  patch?: (el: HTMLElement, html: string) => void
+  theme?: string
+  multiline?: boolean
+  placeholder?: string
+  readonly?: boolean
+  disabled?: boolean
+}
+```
+
+### Events
+
+```ts
+{
+  'update:modelValue': (text: string) => void
+}
+```
+
+## React component
+
+### Usage
+
+```jsx
+import { useState } from 'react'
+import HighlightableInput from 'highlightable-input/vue'
+
+export function App () {
+  const [text, setText] = useState('Hello, @Chickaletta!')
+  const rules = [
+    /* highlight rules */
+  ]
+
+  return (
+    <HighlightableInput
+      value={text}
+      onChange={setText}
+      highlight={rules}
+    />
+  )
+}
+```
+
+### Props
+
+```ts
+interface HighlightableInputProps {
+  value?: string
+  highlight: HighlightRule | Array<HighlightRule> | ((value: string) => string)
+  patch?: (el: HTMLElement, html: string) => void
+  theme?: string
+  multiline?: boolean
+  placeholder?: string
+  readonly?: boolean
+  disabled?: boolean
+  onChange?: (text: string) => void
+}
 ```
 
 ## Limitations
