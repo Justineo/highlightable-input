@@ -1,5 +1,8 @@
 {
   "name": "@highlightable-input/repo",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "scripts": {
+    "build:site": "pnpm --filter \"site\" build"
+  }
 }
