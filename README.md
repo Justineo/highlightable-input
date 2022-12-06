@@ -1,6 +1,10 @@
-# Highlightable Input
+<h1 align="center"><img align="center" src="https://github.com/Justineo/highlightable-input/raw/main/packages/site/src/public/hi.svg" height="32"/> Highlightable Input</h1>
 
-A simple yet fully stylable text field that highlights the text as you type.
+<p align="center">A simple yet fully stylable text field that highlights the text as you type.</p>
+
+<p align="center"><a href="https://highlightable-input.vercel.app/">Live Demo</a></p>
+
+---
 
 ## Motivation
 
