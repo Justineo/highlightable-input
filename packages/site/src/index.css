@@ -65,7 +65,9 @@ h2 {
   font-size: 18px;
 }
 
-highligtable-input {
+highlightable-input {
+  width: 100% !important;
+  max-width: 50vw;
   transition-property: all !important;
 }
 
@@ -145,8 +147,39 @@ option:checked:focus {
     display: flex;
     flex-direction: column;
   }
+}
+
+@media (max-width: 600px) {
+  #app {
+    padding-left: 64px;
+  }
+
+  header h1 {
+    justify-content: center;
+  }
+
+  footer {
+    text-align: center;
+  }
 
   highlightable-input {
-    max-width: 240px;
+    max-width: none;
+  }
+
+  #theme {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  }
+
+  #theme select {
+    margin: 12px 0;
+    height: 32px;
+    background-color: transparent;
   }
 }

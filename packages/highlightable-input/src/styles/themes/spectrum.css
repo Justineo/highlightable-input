@@ -53,7 +53,6 @@ highlightable-input[data-theme="spectrum"] {
       ease-in-out,
     box-shadow var(--spectrum-global-animation-duration-100, 130ms) ease-in-out;
   outline: 0;
-  overflow: visible;
   background-color: var(
     --spectrum-textfield-background-color,
     var(--spectrum-global-color-gray-50, #fff)

@@ -75,7 +75,7 @@ const primaryColors: Record<string, string> = {
 const themeMeta = document.querySelector<HTMLMetaElement>(
   'meta[name="theme-color"]'
 )!
-const themeSelect = document.querySelector<HTMLSelectElement>('#theme')!
+const themeSelect = document.querySelector<HTMLSelectElement>('#theme select')!
 themeSelect.addEventListener('change', () => {
   updateTheme(themeSelect.value)
 })
@@ -106,6 +106,18 @@ styler.addEventListener('keydown', (e: KeyboardEvent) => {
       break
   }
 })
+
+const themeCount = themeSelect.querySelectorAll('option').length
+
+function toggleThemeSelect(collapse: boolean) {
+  themeSelect.size = collapse ? 0 : themeCount
+}
+
+let mql = window.matchMedia('(max-width: 600px)');
+mql.addEventListener('change', (e) => {
+  toggleThemeSelect(e.matches)
+})
+toggleThemeSelect(mql.matches)
 
 declare global {
   interface Window {
