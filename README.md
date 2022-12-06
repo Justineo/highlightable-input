@@ -6,7 +6,7 @@
 
 ---
 
-## Motivation
+<details><summary><h2>Motivation</h2></summary>
 
 There are two main approaches to implement a highlightable text field:
 

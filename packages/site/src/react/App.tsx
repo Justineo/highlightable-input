@@ -11,6 +11,18 @@ export default function App() {
   const [disabled, setDisabled] = useState(false)
 
   useEffect(() => {
+    if (readonly) {
+      setDisabled(false)
+    }
+  }, [readonly])
+
+  useEffect(() => {
+    if (disabled) {
+      setReadonly(false)
+    }
+  }, [disabled])
+
+  useEffect(() => {
     window.registerReactApp((theme) => {
       setTheme(theme)
     })

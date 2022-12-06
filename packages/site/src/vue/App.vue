@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import HighlightableInput from 'highlightable-input/vue'
 import { rules } from '../highlight'
 
@@ -9,6 +9,18 @@ const vueTheme = ref('none')
 const multiline = ref(false)
 const readonly = ref(false)
 const disabled = ref(false)
+
+watch(readonly, (value) => {
+  if (value) {
+    disabled.value = false
+  }
+})
+
+watch(disabled, (value) => {
+  if (value) {
+    readonly.value = false
+  }
+})
 
 onMounted(() => {
   window.registerVueApp((theme) => {
