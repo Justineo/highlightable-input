@@ -15,7 +15,7 @@
     "dev": "vite",
     "build": "tsup && node ./scripts/css.mjs",
     "clear": "rm -rf dist vue react themes *.css *.js *.d.ts",
-    "prepare": "pnpm build && mv ./dist/* .",
+    "prepare": "pnpm clear && pnpm build && mv ./dist/* .",
     "preview": "vite preview"
   },
   "devDependencies": {

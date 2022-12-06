@@ -16,6 +16,7 @@ There are two main approaches to implement a highlightable text field:
 For the first approach, there are already great packages like [inokawa/rich-textarea](https://github.com/inokawa/rich-textarea), but this approach has a major limitation: the styled text is not fully stylable. For example, you can't use `font-size` or `padding` on the styled text.
 
 For `contenteditable` elements, most implementations are full-featured rich text editors. I want something lighter. So this package utilizes `contenteditable` but only for highlighting texts.
+</details>
 
 ## Vanilla JS
 
