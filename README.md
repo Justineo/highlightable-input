@@ -230,7 +230,7 @@ interface HighlightableInputProps {
 
 ```jsx
 import { useState } from 'react'
-import HighlightableInput from 'highlightable-input/vue'
+import HighlightableInput from 'highlightable-input/react'
 
 export function App () {
   const [text, setText] = useState('Hello, @Chickaletta!')
