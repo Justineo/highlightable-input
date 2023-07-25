@@ -3,7 +3,7 @@ import HighlightableInput from 'highlightable-input/react'
 import { rules } from '../highlight'
 
 export default function App() {
-  const [text, setText] = useState('Hello world!')
+  const [text, setText] = useState('Hello Mayor @Humdinger!')
   const [theme, setTheme] = useState('none')
 
   const [multiline, setMultiline] = useState(false)

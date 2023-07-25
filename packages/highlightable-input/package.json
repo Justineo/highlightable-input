@@ -3,35 +3,44 @@
   "version": "0.1.0",
   "type": "module",
   "files": [
-    "vue",
-    "react",
-    "themes",
-    "*.css",
-    "*.js",
-    "*.d.ts"
+    "dist"
   ],
-  "module": "./index.js",
+  "exports": {
+    ".": {
+      "dev": "./src/index.ts",
+      "import": "./dist/index.js"
+    },
+    "./vue": {
+      "dev": "./src/vue.ts",
+      "import": "./dist/vue.js"
+    },
+    "./react": {
+      "dev": "./src/react.tsx",
+      "import": "./dist/react.js"
+    },
+    "./style.css": {
+      "dev": "./src/styles/style.css",
+      "import": "./dist/style.css"
+    },
+    "./themes/*.css": {
+      "dev": "./src/styles/themes/*.css",
+      "import": "./dist/themes/*.css"
+    }
+  },
   "scripts": {
-    "dev": "vite",
     "build": "tsup && node ./scripts/css.mjs",
-    "clear": "rm -rf dist vue react themes *.css *.js *.d.ts",
-    "prepare": "pnpm clear && pnpm build && mv ./dist/* .",
-    "preview": "vite preview"
+    "prepare": "pnpm build"
   },
   "devDependencies": {
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
-    "@vitejs/plugin-react": "^2.2.0",
-    "@vitejs/plugin-vue": "^3.2.0",
     "fast-glob": "^3.2.12",
     "lightningcss": "^1.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "tsup": "^6.5.0",
     "typescript": "^4.6.4",
-    "vite": "^3.2.3",
-    "vue": "^3.2.45",
-    "vue-tsc": "^1.0.9"
+    "vue": "^3.2.45"
   },
   "peerDependencies": {
     "vue": "^3.2.45",

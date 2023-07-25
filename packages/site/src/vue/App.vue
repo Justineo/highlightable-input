@@ -3,7 +3,7 @@ import { onMounted, ref, watch } from 'vue'
 import HighlightableInput from 'highlightable-input/vue'
 import { rules } from '../highlight'
 
-const text = ref('Hello world!')
+const text = ref('Hello Mayor @Goodway!')
 const vueTheme = ref('none')
 
 const multiline = ref(false)

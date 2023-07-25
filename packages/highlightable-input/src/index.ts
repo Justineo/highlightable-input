@@ -4,8 +4,10 @@ import {
   getValueFromElement,
   getHTMLToRender,
   registerCustomElement,
-  isMac,
-  isChrome
+  isChrome,
+  isSelectAllShortcut,
+  isUndoShortcut,
+  isRedoShortcut
 } from './browser'
 import { setFocusable, setContentEditable } from './utils'
 import {
@@ -14,6 +16,7 @@ import {
   type SelectOffsets,
   type SelectOptions
 } from './cursor'
+import { type HistoryEntry, createHistory } from './history'
 
 type Replacer = Parameters<typeof String.prototype.replace>[1]
 
@@ -26,9 +29,10 @@ export interface HighlightRule {
 }
 
 export interface SetupOptions {
+  defaultValue?: string
   highlight: HighlightRule | Array<HighlightRule> | ((value: string) => string)
   patch?: (el: HTMLElement, html: string) => void
-  onInput?: ({ value }: { value: string; position: number }) => void
+  onInput?: (event: { value: string; position: number }) => void
 }
 
 export type HighlightableInput = ReturnType<typeof setup>
@@ -55,30 +59,40 @@ let instances = 0
 
 export function setup(
   el: HTMLElement,
-  { onInput, highlight, patch }: SetupOptions
+  { defaultValue, onInput, highlight, patch }: SetupOptions
 ) {
   const fixPaste = !supportsPlainText()
 
-  let text: string | null = null
-  let html: string | null = null
-  let selection: [number, number] | null = null
+  let text = ''
+  let html = ''
+  let selection: readonly [number, number] = [0, 0]
 
-  let multiLine: boolean = false
-  let disabled: boolean = false
-  let readOnly: boolean = false
+  let multiLine = false
+  let disabled = false
+  let readOnly = false
 
-  init()
+  let composing = false
+  let selectionChanged = false
+
+  init(defaultValue)
+
+  const history = createHistory({
+    value: defaultValue ?? getValueFromElement(el, multiLine),
+    offsets: [0, 0],
+    source: 'initial'
+  })
 
   return {
     getValue() {
       return text
     },
-    setValue(value: string) {
+    setValue(value: string): boolean {
       if (value === text) {
-        return
+        return false
       }
 
       updateHTML(false, value)
+      return true
     },
     setSelection(offsets: SelectOffsets, options?: SelectOptions) {
       setSelection(el, offsets, options)
@@ -96,14 +110,14 @@ export function setup(
     }
   }
 
-  function init() {
+  function init(defaultValue?: string) {
     multiLine = el.getAttribute('aria-multiline') === 'true'
     disabled = el.getAttribute('aria-disabled') === 'true'
     readOnly = el.getAttribute('aria-readonly') === 'true'
 
-    text = html = null
+    text = html = ''
 
-    updateHTML(false)
+    updateHTML(false, defaultValue)
 
     // only editable on focus or hover
     setContentEditable(el, false)
@@ -117,22 +131,14 @@ export function setup(
       window.addEventListener('keydown', globalKeydown)
     }
 
-    if (!multiLine) {
-      el.addEventListener('beforeinput', handleBeforeInput)
-    }
-
-    if (!isFirefox()) {
-      el.addEventListener('compositionend', handleCompositionEnd)
-    }
-
     if (fixPaste) {
       el.addEventListener('paste', handlePaste)
     }
 
-    if (readOnly) {
-      el.addEventListener('keydown', handleKeydown)
-    }
-
+    el.addEventListener('keydown', handleKeydown)
+    el.addEventListener('beforeinput', handleBeforeInput)
+    el.addEventListener('compositionstart', handleCompositionStart)
+    el.addEventListener('compositionend', handleCompositionEnd)
     el.addEventListener('input', handleInput)
     el.addEventListener('focus', handleFocus)
     el.addEventListener('blur', handleBlur)
@@ -143,29 +149,21 @@ export function setup(
   function dispose() {
     instances--
 
-    text = html = null
+    text = html = ''
 
     if (instances === 0) {
       window.removeEventListener('mousedown', globalMousedown)
       window.removeEventListener('keydown', globalKeydown)
     }
 
-    if (!multiLine) {
-      el.removeEventListener('beforeinput', handleBeforeInput)
-    }
-
-    if (!isFirefox()) {
-      el.removeEventListener('compositionend', handleCompositionEnd)
-    }
-
     if (fixPaste) {
       el.removeEventListener('paste', handlePaste)
     }
 
-    if (readOnly) {
-      el.removeEventListener('keydown', handleKeydown)
-    }
-
+    el.removeEventListener('keydown', handleKeydown)
+    el.removeEventListener('beforeinput', handleBeforeInput)
+    el.removeEventListener('compositionstart', handleCompositionStart)
+    el.removeEventListener('compositionend', handleCompositionEnd)
     el.removeEventListener('input', handleInput)
     el.removeEventListener('focus', handleFocus)
     el.removeEventListener('blur', handleBlur)
@@ -180,7 +178,9 @@ export function setup(
 
     const isActive = el === document.activeElement
 
-    const offsets: [number, number] = isActive ? getSelection(el) : [0, 0]
+    const offsets: readonly [number, number] = isActive
+      ? getSelection(el)
+      : [0, 0]
 
     if (patch) {
       patch(el, html)
@@ -191,33 +191,50 @@ export function setup(
     setSelection(el, offsets)
 
     if (fromUser && onInput) {
+      console.log('onInput', text)
       onInput({ value: text, position: offsets[1] })
     }
   }
 
   /**
-   * Event handlers
+   * Input handlers
    */
   function handleBeforeInput(e: InputEvent) {
     if (
-      e.inputType === 'insertParagraph' ||
-      e.inputType === 'insertLineBreak'
+      !multiLine &&
+      (e.inputType === 'insertParagraph' || e.inputType === 'insertLineBreak')
     ) {
       e.preventDefault()
+      return
     }
+
+    historyBeforeInput(e)
+  }
+
+  function handleCompositionStart() {
+    historyBeforeInput()
+    composing = true
   }
 
   function handleCompositionEnd() {
-    updateHTML(true)
+    composing = false
+
+    if (!isFirefox()) {
+      updateHTML(true)
+      historyInput()
+    }
   }
 
   function handleInput(e: Event) {
+    const ev = e as InputEvent
+
     // Skips composition
-    if ((e as InputEvent).isComposing) {
+    if (composing) {
       return
     }
 
     updateHTML(true)
+    historyInput(ev)
   }
 
   function handlePaste(e: ClipboardEvent) {
@@ -250,15 +267,14 @@ export function setup(
   }
 
   function handleKeydown(e: KeyboardEvent) {
-    if (e.key.toLowerCase() !== 'a' || e.shiftKey || e.altKey) {
-      return
-    }
-
-    if (
-      (isMac() && e.metaKey && !e.ctrlKey) ||
-      (!isMac() && e.ctrlKey && !e.metaKey)
-    ) {
+    if (readOnly && isSelectAllShortcut(e)) {
       setSelection(el, true)
+      e.preventDefault()
+    } else if (isUndoShortcut(e)) {
+      history.undo(historySync)
+      e.preventDefault()
+    } else if (isRedoShortcut(e)) {
+      history.redo(historySync)
       e.preventDefault()
     }
   }
@@ -315,5 +331,89 @@ export function setup(
     }
 
     return getHTMLToRender(result, multiLine)
+  }
+
+  function historySync(entry: HistoryEntry) {
+    updateHTML(false, entry.value)
+    setSelection(el, entry.offsets)
+
+    if (onInput) {
+      onInput({ value: text, position: entry.offsets[0]})
+    }
+  }
+
+  function historyBeforeInput(e?: InputEvent) {
+    let { undo, update } = history
+
+    if (composing) {
+      return
+    }
+
+    if (e?.inputType === 'historyUndo') {
+      undo(historySync)
+      e.preventDefault()
+    } else if (e?.inputType === 'historyRedo') {
+      history.redo(historySync)
+      e.preventDefault()
+    } else {
+      const [start, end] = getSelection(el)
+      const [currentStart, currentEnd] = history.current.offsets
+      if (start !== end || start !== currentStart || end !== currentEnd) {
+        // selection changed
+        selectionChanged = true
+      }
+
+      update({
+        offsets: [start, end]
+      })
+    }
+  }
+
+  function historyInput(e?: InputEvent) {
+    let { current, update, insert } = history
+    let source: HistoryEntry['source'] | null = null
+
+    // Handle history
+    if (!e || e.inputType === 'insertText') {
+      if (e?.data === ' ') {
+        if (current.source !== 'space') {
+          source = 'space'
+        }
+      } else {
+        if (current.source !== 'normal' || selectionChanged) {
+          source = 'normal'
+        }
+      }
+
+      if (!source) {
+        update({
+          value: text,
+          offsets: getSelection(el)
+        })
+      }
+    } else if (e.inputType.indexOf('insert') === 0) {
+      source = 'single'
+    } else if (
+      e.inputType.indexOf('delete') === 0 &&
+      current.source !== 'delete'
+    ) {
+      source = 'delete'
+    }
+
+    const offsets = getSelection(el)
+    if (source) {
+      insert({
+        value: text,
+        offsets,
+        source
+      })
+    } else {
+      update({
+        value: text,
+        offsets
+      })
+    }
+
+    selectionChanged = false
   }
 }

@@ -67,6 +67,33 @@ export function isMac() {
   return isMacOS
 }
 
+export function isMetaKey(e: KeyboardEvent) {
+  if (isMac()) {
+    return e.metaKey && !e.ctrlKey
+  }
+
+  return e.ctrlKey && !e.metaKey
+}
+
+export function isUndoShortcut(e: KeyboardEvent) {
+  // ⌘ + Z on macOS
+  // Ctrl + Z on windows
+  return e.key.toUpperCase() === 'Z' && isMetaKey(e) && !e.shiftKey && !e.altKey
+}
+
+export function isRedoShortcut(e: KeyboardEvent) {
+  // ⇧ + ⌘ + Z on macOS
+  // Ctrl + Y on windows
+  return (
+    (isMac() && e.key.toUpperCase() === 'Z' && isMetaKey(e) && e.shiftKey && !e.altKey) ||
+    (!isMac() && e.key.toUpperCase() === 'Y' && isMetaKey(e) && !e.shiftKey && !e.altKey)
+  )
+}
+
+export function isSelectAllShortcut(e: KeyboardEvent) {
+  return e.key.toUpperCase() === 'A' && !e.shiftKey && !e.altKey && isMetaKey(e)
+}
+
 // Get the user-expected text content of the element instead of the
 // text content actually rendered by the browser. For single-line
 // inputs, line breaks are replaced with spaces. For multi-line

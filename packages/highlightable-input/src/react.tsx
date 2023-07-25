@@ -1,4 +1,10 @@
-import { useRef, useEffect, useLayoutEffect, HTMLAttributes } from 'react'
+import {
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  HTMLAttributes,
+  useState
+} from 'react'
 import { setup, type HighlightableInput, type SetupOptions } from './index'
 
 declare global {
@@ -8,7 +14,9 @@ declare global {
     }
   }
 }
+
 type HighlightableInputProps = {
+  defaultValue?: string
   value?: string
   multiline?: boolean
   readonly?: boolean
@@ -21,6 +29,7 @@ type HighlightableInputProps = {
 
 const Component = (props: HighlightableInputProps) => {
   const {
+    defaultValue,
     value,
     multiline,
     readonly,
@@ -35,7 +44,12 @@ const Component = (props: HighlightableInputProps) => {
   const root = useRef<HTMLElement>(null)
   const input = useRef<HighlightableInput | null>(null)
 
-  // const controlled = value !== undefined
+  const controlled = value !== undefined
+  const [localValue, setLocalValue] = useState<string | undefined>(
+    value ?? defaultValue
+  )
+  const realValue = controlled ? value : localValue
+  const [updateSignal, setUpdateSignal] = useState(0)
 
   useLayoutEffect(() => {
     if (!root.current) {
@@ -43,42 +57,40 @@ const Component = (props: HighlightableInputProps) => {
     }
 
     input.current = setup(root.current, {
-      ...(onChange
-        ? {
-            onInput({ value: newValue }) {
-              if (value !== newValue) {
-                onChange(newValue)
+      defaultValue: realValue,
+      onInput({ value }) {
+        if (value !== realValue) {
+          onChange?.(value)
 
-                // if (controlled) {
-                //   useLayoutEffect(() => {
-                //     if (newValue !== value) {
-                //       input.current?.setValue(value || '')
-                //       input.current?.setSelection(true, { collapse: 'end' })
-                //     }
-                //   })
-                // }
-              }
-            }
+          if (controlled) {
+            setUpdateSignal((signal) => (signal + 1) % 2)
+          } else {
+            setLocalValue(value)
           }
-        : {}),
+        }
+      },
       patch,
       highlight
     })
-
-    setValue(value)
 
     return () => {
       input.current?.dispose()
     }
   }, [])
 
+  useLayoutEffect(() => {
+    if (controlled) {
+      setValue(realValue)
+    }
+  }, [updateSignal])
+
   useEffect(() => {
     input.current?.refresh()
   }, [multiline, readonly, disabled])
 
   useEffect(() => {
-    setValue(value)
-  }, [value])
+    setValue(realValue)
+  }, [value, realValue])
 
   function setValue(value: string = '') {
     input.current?.setValue(value)

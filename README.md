@@ -61,6 +61,7 @@ interface HighlightRule {
 }
 
 interface SetupOptions {
+  defaultValue?: string
   highlight: HighlightRule | Array<HighlightRule> | ((value: string) => string) // use a function to fully customize the highlighting
   patch?: (el: HTMLElement, html: string) => void // used to customize the patching process, set `innerHTML` by default
   onInput?: ({ value }: { value: string; position: number }) => void
@@ -205,6 +206,7 @@ const rules = [
 
 ```ts
 interface HighlightableInputProps {
+  defaultValue?: string
   modelValue?: string
   highlight: HighlightRule | Array<HighlightRule> | ((value: string) => string)
   patch?: (el: HTMLElement, html: string) => void
@@ -252,6 +254,7 @@ export function App () {
 
 ```ts
 interface HighlightableInputProps {
+  defaultValue?: string
   value?: string
   highlight: HighlightRule | Array<HighlightRule> | ((value: string) => string)
   patch?: (el: HTMLElement, html: string) => void
@@ -263,7 +266,3 @@ interface HighlightableInputProps {
   onChange?: (text: string) => void
 }
 ```
-
-## Limitations
-
-- Undo/redo are currently unavailable.

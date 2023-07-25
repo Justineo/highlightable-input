@@ -3,11 +3,17 @@ export interface SelectOptions {
   collapse?: 'start' | 'end' | false
 }
 
-export type SelectOffsets = [number, number] | number | true
+export type SelectOffsets = readonly [number, number] | number | true
 
-export function getSelection(el: HTMLElement): [number, number] {
-  const { anchorNode, anchorOffset, focusNode, focusOffset } =
-    window.getSelection()!
+export function getSelection(el: HTMLElement): readonly [number, number] {
+  const s = window.getSelection()!
+  const { anchorNode, anchorOffset, focusNode, focusOffset } = s
+
+  // Selecting with "Select all (⌘ + A on macOS / Ctrl + A on Windows)"
+  // in Firefox will cause the root element to be selected.
+  if (anchorNode === el && focusNode === el) {
+    return [0, s.getRangeAt(0).toString().length]
+  }
 
   const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT)
   let start = 0
@@ -56,7 +62,10 @@ export function setSelection(
     // select all
     selectAll(el)
   } else {
-    selectByOffsets(el, Array.isArray(offsets) ? offsets : [offsets, offsets])
+    selectByOffsets(
+      el,
+      typeof offsets === 'number' ? [offsets, offsets] : offsets
+    )
   }
 
   if (!collapse) {
@@ -71,7 +80,7 @@ export function setSelection(
   }
 }
 
-function selectByOffsets(el: HTMLElement, offsets: [number, number]) {
+function selectByOffsets(el: HTMLElement, offsets: readonly [number, number]) {
   const selection = window.getSelection()!
   const [startOffset, endOffset] = offsets
   const collapsed = startOffset === endOffset

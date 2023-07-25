@@ -6,12 +6,14 @@ import {
   watch,
   nextTick,
   type PropType,
-  onBeforeUnmount
+  onBeforeUnmount,
+  computed
 } from 'vue'
 import { setup, type HighlightableInput, type SetupOptions } from './index'
 
 export default defineComponent({
   props: {
+    defaultValue: String,
     modelValue: String,
     multiline: Boolean,
     readonly: Boolean,
@@ -26,7 +28,11 @@ export default defineComponent({
   setup(props, { emit }) {
     const root = ref<HTMLElement>()
     const input = ref<HighlightableInput>()
-    const controlled = ref(props.modelValue !== undefined)
+    const controlled = computed(() => props.modelValue !== undefined)
+    const local = ref(props.modelValue ?? props.defaultValue)
+    const real = computed(
+      () => (controlled.value ? props.modelValue : local.value) || ''
+    )
 
     onMounted(() => {
       if (!root.value) {
@@ -34,25 +40,25 @@ export default defineComponent({
       }
 
       input.value = setup(root.value, {
+        defaultValue: real.value,
         onInput({ value }) {
-          if (value !== props.modelValue) {
+          if (value !== real.value) {
             emit('update:modelValue', value)
 
             if (controlled.value) {
               nextTick(() => {
-                if (value !== props.modelValue) {
-                  input.value?.setValue(props.modelValue || '')
-                  input.value?.setSelection(true, { collapse: 'end' })
+                if (value !== real.value) {
+                  setValue(real.value)
                 }
               })
+            } else {
+              local.value = value
             }
           }
         },
         patch: props.patch,
         highlight: props.highlight
       })
-
-      setValue(props.modelValue)
     })
 
     onBeforeUnmount(() => {
@@ -70,13 +76,13 @@ export default defineComponent({
     )
 
     watch(
-      () => props.modelValue,
+      () => real.value,
       (newValue) => {
         setValue(newValue)
       }
     )
 
-    function setValue(value: string = '') {
+    function setValue(value: string) {
       input.value?.setValue(value)
     }
 
