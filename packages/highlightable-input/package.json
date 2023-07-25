@@ -1,6 +1,16 @@
 {
   "name": "highlightable-input",
+  "description": "A simple yet fully stylable text field that highlights the text as you type.",
   "version": "0.1.0",
+  "author": "Justineo <justice360@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "highlightable",
+    "input",
+    "highlightable-input",
+    "highlight",
+    "rich-text"
+  ],
   "type": "module",
   "files": [
     "dist"
@@ -38,8 +48,8 @@
     "lightningcss": "^1.17.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tsup": "^6.5.0",
-    "typescript": "^4.6.4",
+    "tsup": "^7.1.0",
+    "typescript": "^5.1.6",
     "vue": "^3.2.45"
   },
   "peerDependencies": {
