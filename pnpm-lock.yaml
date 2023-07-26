@@ -59,9 +59,6 @@ importers:
       '@vitejs/plugin-vue':
         specifier: ^4.2.3
         version: 4.2.3(vite@4.4.4)(vue@3.2.45)
-      diffhtml:
-        specifier: 1.0.0-beta.29
-        version: 1.0.0-beta.29
       highlightable-input:
         specifier: workspace:*
         version: link:../highlightable-input
@@ -1053,10 +1050,6 @@ packages:
     resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
     engines: {node: '>=0.10'}
     hasBin: true
-    dev: true
-
-  /diffhtml@1.0.0-beta.29:
-    resolution: {integrity: sha512-X3ZBa5FOBIBBgMo/MHqQFZTQhOgbJmET6JS5CRrJBKVkmdWF7AemldX2lzF2+c6arFykQ6SOI1SDlY6r2+2z5g==}
     dev: true
 
   /dir-glob@3.0.1:

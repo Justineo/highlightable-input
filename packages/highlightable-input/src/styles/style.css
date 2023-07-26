@@ -24,7 +24,6 @@ highlightable-input[aria-multiline="true"] {
 highlightable-input[aria-placeholder]::before {
   content: attr(aria-placeholder);
   position: absolute;
-  z-index: -1;
   color: transparent;
 }
 

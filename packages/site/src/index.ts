@@ -1,4 +1,3 @@
-import { innerHTML } from 'diffhtml'
 import { setup } from 'highlightable-input'
 import { rules } from './highlight'
 import mountVueApp from './vue'
@@ -44,9 +43,6 @@ els.forEach((el) => {
             }
           ]
         : rules,
-    patch: (el, html) => {
-      innerHTML(el, html)
-    },
     onInput: ({ value }) => {
       console.log(value.replace(/\n/g, '↵'))
 
