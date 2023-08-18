@@ -309,8 +309,8 @@ export function setup(
 
       for (const rule of Array.isArray(highlight) ? highlight : [highlight]) {
         const replacer = rule.replacer || getDefaultReplacer(rule)
-        result = result.replace(rule.pattern, (match) => {
-          const markup = replacer(match)
+        result = result.replace(rule.pattern, (...args) => {
+          const markup = replacer(...args)
           let key = m2k.get(markup)
 
           if (!key) {

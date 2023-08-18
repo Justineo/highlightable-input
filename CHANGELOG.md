@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.2
+
+- Replacer should receive all available arguments.
+
 ## 0.2.1
 
 - Fix placeholder style.
