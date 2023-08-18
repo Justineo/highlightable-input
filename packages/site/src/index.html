@@ -126,7 +126,17 @@
         <section id="vue-app"></section>
         <section id="react-app"></section>
         <section class="row">
-          <h2><label for="styler">Mark style</label></h2>
+          <h2><label for="prompt">Prompt template</label></h2>
+          <highlightable-input
+            id="prompt"
+            role="textbox"
+            aria-multiline="true"
+            data-theme="light"
+            >You are a professional translator. Please translate the following {{from}} text into {{target}}. If user provided {{target}} text, please translate it back to {{from}}.
+</highlightable-input>
+        </section>
+        <section class="row">
+          <h2><label for="styler">Code styler</label></h2>
           <highlightable-input
             id="styler"
             role="textbox"
@@ -136,19 +146,30 @@
   opacity: 0.6;
 }
 
-highlightable-input .mention {
-  margin: 1px;
-  border-radius: 3px;
-  padding: 1px;
-  background: gold;
-  border: 1px solid goldenrod;
-  color: darkgoldenrod;
+highlightable-input .link {
+  background-color: transparent;
+  color: rgb(29, 155, 240);
+  font-weight: 400;
+  cursor: pointer;
 }
 
-highlightable-input .hashtag {
-  background: none;
-  font-weight: 600;
-  color: steelblue;
+highlightable-input .link:hover {
+  text-decoration: underline;
+}
+
+highlightable-input[aria-disabled="true"] .link {
+  pointer-events: none;
+}
+
+highlightable-input .variable {
+  margin: 1px;
+  background-color: rgba(21, 94, 239, 0.05);
+  font-weight: 500;
+  color: rgb(28, 100, 242);
+}
+
+highlightable-input .variable span {
+  opacity: 0.6;
 }
 </highlightable-input>
         </section>

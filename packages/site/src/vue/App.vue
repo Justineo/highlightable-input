@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue'
 import HighlightableInput from 'highlightable-input/vue'
-import { rules } from '../highlight'
+import { tweet } from '../rules'
 
 const text = ref('Hello Mayor @Goodway!')
 const vueTheme = ref('none')
@@ -40,7 +40,7 @@ onMounted(() => {
     id="vue"
     :theme="vueTheme"
     v-model="text"
-    :highlight="rules"
+    :highlight="tweet"
     :multiline="multiline"
     :readonly="readonly"
     :disabled="disabled"

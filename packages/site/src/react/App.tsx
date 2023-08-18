@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import HighlightableInput from 'highlightable-input/react'
-import { rules } from '../highlight'
+import { tweet } from '../rules'
 
 export default function App() {
   const [text, setText] = useState('Hello Mayor @Humdinger!')
@@ -64,7 +64,7 @@ export default function App() {
         id="react"
         theme={theme}
         value={text}
-        highlight={rules}
+        highlight={tweet}
         multiline={multiline}
         readonly={readonly}
         disabled={disabled}

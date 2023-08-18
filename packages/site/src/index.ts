@@ -1,5 +1,5 @@
 import { setup } from 'highlightable-input'
-import { rules } from './highlight'
+import { tweet, color, variable } from './rules'
 import mountVueApp from './vue'
 import mountReactApp from './react'
 import 'highlightable-input/style.css'
@@ -16,8 +16,9 @@ import 'highlightable-input/themes/semi.css'
 import 'highlightable-input/themes/spectrum.css'
 
 const els = document.querySelectorAll<HTMLElement>('highlightable-input')
-const styler = document.querySelector<HTMLInputElement>('#styler')!
+const styler = document.querySelector<HTMLElement>('#styler')!
 const customStyle = document.querySelector<HTMLStyleElement>('#custom-style')!
+const prompt = document.querySelector<HTMLElement>('#prompt')!
 
 function updateStyle(value: string) {
   customStyle.textContent = value
@@ -27,22 +28,7 @@ updateStyle(styler.textContent!)
 
 els.forEach((el) => {
   setup(el, {
-    highlight:
-      el === styler
-        ? [
-            {
-              pattern:
-                /\b(?:aliceblue|antiquewhite|aqua|aquamarine|azure|beige|bisque|black|blanchedalmond|blue|blueviolet|brown|burlywood|cadetblue|chartreuse|chocolate|coral|cornflowerblue|cornsilk|crimson|cyan|darkblue|darkcyan|darkgoldenrod|darkgray|darkgreen|darkgrey|darkkhaki|darkmagenta|darkolivegreen|darkorange|darkorchid|darkred|darksalmon|darkseagreen|darkslateblue|darkslategray|darkslategrey|darkturquoise|darkviolet|deeppink|deepskyblue|dimgray|dimgrey|dodgerblue|firebrick|floralwhite|forestgreen|fuchsia|gainsboro|ghostwhite|gold|goldenrod|gray|green|greenyellow|grey|honeydew|hotpink|indianred|indigo|ivory|khaki|lavender|lavenderblush|lawngreen|lemonchiffon|lightblue|lightcoral|lightcyan|lightgoldenrodyellow|lightgray|lightgreen|lightgrey|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lime|limegreen|linen|magenta|maroon|mediumaquamarine|mediumblue|mediumorchid|mediumpurple|mediumseagreen|mediumslateblue|mediumspringgreen|mediumturquoise|mediumvioletred|midnightblue|mintcream|mistyrose|moccasin|navajowhite|navy|oldlace|olive|olivedrab|orange|orangered|orchid|palegoldenrod|palegreen|paleturquoise|palevioletred|papayawhip|peachpuff|peru|pink|plum|powderblue|purple|red|rebeccapurple|rosybrown|royalblue|saddlebrown|salmon|sandybrown|seagreen|seashell|sienna|silver|skyblue|slateblue|slategray|slategrey|snow|springgreen|steelblue|tan|teal|thistle|tomato|turquoise|violet|wheat|white|whitesmoke|yellow|yellowgreen)\b/gi,
-              replacer: (match: string) =>
-                `<mark style="background: none; border-bottom: 2px solid ${match}">${match}</mark>`
-            },
-            {
-              pattern: /#(?:[0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})/gi,
-              replacer: (match: string) =>
-                `<mark style="background: none; border-bottom: 2px solid ${match}">${match}</mark>`
-            }
-          ]
-        : rules,
+    highlight: el === styler ? color : el === prompt ? variable : tweet,
     onInput: ({ value }) => {
       console.log(value.replace(/\n/g, '↵'))
 
@@ -87,7 +73,9 @@ function updateTheme(theme: string) {
     el.dataset.theme = theme
   })
 
-  themeUpdateCallbacks.forEach(callback => { callback(theme) })
+  themeUpdateCallbacks.forEach((callback) => {
+    callback(theme)
+  })
 }
 
 styler.addEventListener('keydown', (e: KeyboardEvent) => {
@@ -109,7 +97,7 @@ function toggleThemeSelect(collapse: boolean) {
   themeSelect.size = collapse ? 0 : themeCount
 }
 
-let mql = window.matchMedia('(max-width: 600px)');
+let mql = window.matchMedia('(max-width: 600px)')
 mql.addEventListener('change', (e) => {
   toggleThemeSelect(e.matches)
 })
@@ -117,8 +105,8 @@ toggleThemeSelect(mql.matches)
 
 declare global {
   interface Window {
-    registerVueApp: (updater: (theme: string) => void) => void;
-    registerReactApp: (updater: (theme: string) => void) => void;
+    registerVueApp: (updater: (theme: string) => void) => void
+    registerReactApp: (updater: (theme: string) => void) => void
   }
 }
 
