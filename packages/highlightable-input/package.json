@@ -1,7 +1,7 @@
 {
   "name": "highlightable-input",
   "description": "A simple yet fully stylable text field that highlights the text as you type.",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "author": "Justineo <justice360@gmail.com>",
   "license": "MIT",
   "keywords": [
