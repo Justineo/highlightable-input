@@ -191,7 +191,6 @@ export function setup(
     setSelection(el, offsets)
 
     if (fromUser && onInput) {
-      console.log('onInput', text)
       onInput({ value: text, position: offsets[1] })
     }
   }

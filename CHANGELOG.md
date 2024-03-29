@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.3
+
+- Removed `console.log` during user input.
+
 ## 0.2.2
 
 - Replacer should receive all available arguments.
