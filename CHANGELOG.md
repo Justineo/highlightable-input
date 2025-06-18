@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Added `data-rows` attribute support for vanilla version and `rows` prop for Vue/React components.
+
 ## 0.3.0
 
 - Added a new theme `kongponents`.
