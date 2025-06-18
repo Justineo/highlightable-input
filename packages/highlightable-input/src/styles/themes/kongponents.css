@@ -18,8 +18,12 @@ highlightable-input[data-theme='kongponents'] {
 
 highlightable-input[data-theme='kongponents'][aria-multiline='true'] {
   max-height: calc(100vh - 200px);
+  min-height: calc(var(--kui-line-height-40, 24px) * var(--rows) + var(--kui-space-40, 8px) * 2);
+  resize: vertical;
+}
+
+highlightable-input[data-theme='kongponents'][aria-multiline='true'][style*='height:'] {
   min-height: calc(var(--kui-line-height-40, 24px) * 2 + var(--kui-space-40, 8px) * 2);
-  resize: none;
 }
 
 highlightable-input[data-theme='kongponents'][aria-placeholder]::before {

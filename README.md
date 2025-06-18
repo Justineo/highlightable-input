@@ -101,6 +101,10 @@ The `setup` function will respect certain attributes on the element. As we are n
 - `aria-readonly`
 - `aria-disabled`
 
+In addition, we also support the following attributes to further tweak the element:
+
+- `data-rows`: the number of rows for multiline input (default: `2`)
+
 For example:
 
 ```html
@@ -132,7 +136,6 @@ import 'highlightable-input/themes/light.css'
 
 Available themes:
 
-- `light` ([Light Design](https://veui.dev))
 - `antd` ([Ant Design](https://ant.design))
 - `arco` ([Arco Design](https://arco.design))
 - `atlassian` ([Atlassian Design](https://atlassian.design))
@@ -141,6 +144,7 @@ Available themes:
 - `chakra` ([Chakra UI](https://chakra-ui.com))
 - `fluent` ([Fluent UI](https://developer.microsoft.com/fluentui))
 - `kongponents` ([Kongponents](https://kongponents.konghq.com/))
+- `light` ([Light Design](https://veui.dev))
 - `lightning` ([Lightning Design System](https://www.lightningdesignsystem.com))
 - `semi` ([Semi Design](https://semi.design))
 - `spectrum` ([Spectrum Design System](https://spectrum.adobe.com))
@@ -216,6 +220,7 @@ interface HighlightableInputProps {
   placeholder?: string
   readonly?: boolean
   disabled?: boolean
+  rows?: number
 }
 ```
 
@@ -264,6 +269,7 @@ interface HighlightableInputProps {
   placeholder?: string
   readonly?: boolean
   disabled?: boolean
+  rows?: number
   onChange?: (text: string) => void
 }
 ```

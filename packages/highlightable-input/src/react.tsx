@@ -21,6 +21,7 @@ type HighlightableInputProps = {
   multiline?: boolean
   readonly?: boolean
   disabled?: boolean
+  rows?: number
   theme?: string
   highlight: SetupOptions['highlight']
   patch?: SetupOptions['patch']
@@ -34,6 +35,7 @@ const Component = (props: HighlightableInputProps) => {
     multiline,
     readonly,
     disabled,
+    rows,
     theme,
     highlight,
     patch,
@@ -103,6 +105,7 @@ const Component = (props: HighlightableInputProps) => {
       aria-readonly={props.readonly || null}
       aria-disabled={props.disabled || null}
       data-theme={props.theme || null}
+      data-rows={props.rows || null}
       {...restProps}
     />
   )

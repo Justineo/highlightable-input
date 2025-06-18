@@ -44,5 +44,6 @@ onMounted(() => {
     :multiline="multiline"
     :readonly="readonly"
     :disabled="disabled"
+    :rows="multiline ? 3 : undefined"
   />
 </template>

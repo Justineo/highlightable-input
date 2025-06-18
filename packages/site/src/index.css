@@ -27,7 +27,7 @@ header,
 footer {
   flex-grow: 0;
   overflow: hidden;
-  background-color: var(--theme-color, #000);
+  background-color: var(--theme-color, transparent);
   color: #fff;
   transition: background-color 0.2s ease-in-out;
 }
@@ -93,6 +93,8 @@ highlightable-input {
 select {
   border: none;
   outline: none;
+  overflow: auto;
+  scrollbar-width: thin;
 }
 
 select,

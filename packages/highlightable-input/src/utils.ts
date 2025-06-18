@@ -14,3 +14,7 @@ export function setFocusable(el: HTMLElement, value: boolean) {
     el.removeAttribute('tabindex')
   }
 }
+
+export function setRows(el: HTMLElement, value: number) {
+  el.style.setProperty('--rows', value.toString())
+}

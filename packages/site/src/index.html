@@ -15,6 +15,23 @@
     <link rel="stylesheet" href="./index.css" />
     <style id="custom-style"></style>
     <script defer src="/_vercel/insights/script.js"></script>
+    <script>
+      window.primaryColors = {
+        none: '#000',
+        antd: '#1677ff',
+        arco: '#165dff',
+        atlassian: '#0052cc',
+        bootstrap: '#0d6efd',
+        carbon: '#0f62fe',
+        chakra: '#309795',
+        fluent: '#0178d4',
+        kongponents: '#0044f4',
+        light: '#0052cc',
+        lightning: '#0176d3',
+        semi: '#0064fa',
+        spectrum: '#0868e3'
+      }
+    </script>
   </head>
   <body>
     <header>
@@ -27,7 +44,6 @@
     <main spellcheck="false">
       <aside id="theme">
         <select size="12">
-          <option value="light" selected>Light Design</option>
           <option value="antd">Ant Design</option>
           <option value="arco">Arco Design</option>
           <option value="atlassian">Atlassian Design</option>
@@ -36,11 +52,24 @@
           <option value="chakra">Chakra UI</option>
           <option value="fluent">Fluent Design</option>
           <option value="kongponents">Kongponents</option>
+          <option value="light">Light Design</option>
           <option value="lightning">Lightning</option>
           <option value="semi">Semi Design</option>
           <option value="spectrum">Spectrum</option>
           <option value="none">None</option>
         </select>
+        <script>
+          // random selection
+          const themeSelect = document.querySelector('#theme select');
+          const options = themeSelect.querySelectorAll('option');
+          const randomIndex = Math.floor(Math.random() * options.length);
+          const defaultTheme = options[randomIndex];
+          const themeMeta = document.querySelector('meta[name="theme-color"]');
+          const color = primaryColors[defaultTheme.value] || defaultTheme.value;
+          themeSelect.value = defaultTheme.value;
+          document.documentElement.style.setProperty('--theme-color', color)
+          themeMeta.content = color
+        </script>
       </aside>
       <section id="app">
         <section>

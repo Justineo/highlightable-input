@@ -7,9 +7,10 @@ import {
   isChrome,
   isSelectAllShortcut,
   isUndoShortcut,
-  isRedoShortcut
+  isRedoShortcut,
+  restoreResizing
 } from './browser'
-import { setFocusable, setContentEditable } from './utils'
+import { setFocusable, setContentEditable, setRows } from './utils'
 import {
   getSelection,
   setSelection,
@@ -70,6 +71,7 @@ export function setup(
   let multiLine = false
   let disabled = false
   let readOnly = false
+  let rows = 2
 
   let composing = false
   let selectionChanged = false
@@ -115,6 +117,9 @@ export function setup(
     disabled = el.getAttribute('aria-disabled') === 'true'
     readOnly = el.getAttribute('aria-readonly') === 'true'
 
+    const rowsValue = Number.parseInt(el.getAttribute('data-rows') ?? '', 10)
+    rows = rowsValue > 0 ? rowsValue : rows
+
     text = html = ''
 
     updateHTML(false, defaultValue)
@@ -123,6 +128,8 @@ export function setup(
     setContentEditable(el, false)
 
     setFocusable(el, !disabled)
+
+    setRows(el, rows)
 
     el.setAttribute('role', 'textbox')
 
@@ -142,6 +149,7 @@ export function setup(
     el.addEventListener('input', handleInput)
     el.addEventListener('focus', handleFocus)
     el.addEventListener('blur', handleBlur)
+    el.addEventListener('dblclick', restoreResizing)
 
     instances++
   }
@@ -167,6 +175,7 @@ export function setup(
     el.removeEventListener('input', handleInput)
     el.removeEventListener('focus', handleFocus)
     el.removeEventListener('blur', handleBlur)
+    el.removeEventListener('dblclick', restoreResizing)
   }
 
   function updateHTML(

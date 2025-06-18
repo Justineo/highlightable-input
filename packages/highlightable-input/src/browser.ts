@@ -85,8 +85,16 @@ export function isRedoShortcut(e: KeyboardEvent) {
   // ⇧ + ⌘ + Z on macOS
   // Ctrl + Y on windows
   return (
-    (isMac() && e.key.toUpperCase() === 'Z' && isMetaKey(e) && e.shiftKey && !e.altKey) ||
-    (!isMac() && e.key.toUpperCase() === 'Y' && isMetaKey(e) && !e.shiftKey && !e.altKey)
+    (isMac() &&
+      e.key.toUpperCase() === 'Z' &&
+      isMetaKey(e) &&
+      e.shiftKey &&
+      !e.altKey) ||
+    (!isMac() &&
+      e.key.toUpperCase() === 'Y' &&
+      isMetaKey(e) &&
+      !e.shiftKey &&
+      !e.altKey)
   )
 }
 
@@ -110,4 +118,68 @@ export function getValueFromElement(el: HTMLElement, multiLine: boolean) {
 // correctly rendered in the DOM.
 export function getHTMLToRender(html: string, multiLine: boolean) {
   return !multiLine || html === '' ? html : html + '\n'
+}
+
+export function getScrollbarSize(
+  exemplar: HTMLElement = document.documentElement
+): { width: number; height: number } {
+  const probe = exemplar.cloneNode(false) as HTMLElement
+
+  Object.assign(probe.style, {
+    width: '100px',
+    height: '100px',
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    overflow: 'scroll',
+    visibility: 'hidden',
+    pointerEvents: 'none',
+    margin: '0',
+    padding: '0'
+  })
+
+  document.body.appendChild(probe)
+
+  const {
+    borderLeftWidth,
+    borderRightWidth,
+    borderTopWidth,
+    borderBottomWidth
+  } = getComputedStyle(probe)
+  const borderLeft = Number.parseFloat(borderLeftWidth) || 0
+  const borderRight = Number.parseFloat(borderRightWidth) || 0
+  const borderTop = Number.parseFloat(borderTopWidth) || 0
+  const borderBottom = Number.parseFloat(borderBottomWidth) || 0
+
+  const width = probe.offsetWidth - probe.clientWidth - borderLeft - borderRight
+  const height =
+    probe.offsetHeight - probe.clientHeight - borderTop - borderBottom
+
+  document.body.removeChild(probe)
+
+  return {
+    width: Math.max(0, width),
+    height: Math.max(0, height)
+  }
+}
+
+export function restoreResizing(e: MouseEvent) {
+  if (isFirefox()) {
+    return
+  }
+
+  const { target, clientX, clientY } = e
+  const t = target as HTMLElement
+  if (t.tagName.toLowerCase() !== 'highlightable-input') {
+    return
+  }
+
+  const { right, bottom } = t.getBoundingClientRect()
+  const handleSize = getScrollbarSize(t)
+  if (
+    clientX > right - handleSize.width &&
+    clientY > bottom - handleSize.height
+  ) {
+    t.style.height = ''
+  }
 }

@@ -3,7 +3,6 @@ import { tweet, color, variable } from './rules'
 import mountVueApp from './vue'
 import mountReactApp from './react'
 import 'highlightable-input/style.css'
-import 'highlightable-input/themes/light.css'
 import 'highlightable-input/themes/antd.css'
 import 'highlightable-input/themes/arco.css'
 import 'highlightable-input/themes/atlassian.css'
@@ -12,9 +11,16 @@ import 'highlightable-input/themes/carbon.css'
 import 'highlightable-input/themes/chakra.css'
 import 'highlightable-input/themes/fluent.css'
 import 'highlightable-input/themes/kongponents.css'
+import 'highlightable-input/themes/light.css'
 import 'highlightable-input/themes/lightning.css'
 import 'highlightable-input/themes/semi.css'
 import 'highlightable-input/themes/spectrum.css'
+
+declare global {
+  interface Window {
+    primaryColors: Record<string, string>
+  }
+}
 
 const els = document.querySelectorAll<HTMLElement>('highlightable-input')
 const styler = document.querySelector<HTMLElement>('#styler')!
@@ -40,22 +46,6 @@ els.forEach((el) => {
   })
 })
 
-const primaryColors: Record<string, string> = {
-  none: '#000',
-  light: '#0052cc',
-  antd: '#1677ff',
-  arco: '#165dff',
-  atlassian: '#0052cc',
-  bootstrap: '#0d6efd',
-  carbon: '#0f62fe',
-  chakra: '#309795',
-  fluent: '#0178d4',
-  kongponents: '#0044f4',
-  lightning: '#0176d3',
-  semi: '#0064fa',
-  spectrum: '#0868e3'
-}
-
 const themeMeta = document.querySelector<HTMLMetaElement>(
   'meta[name="theme-color"]'
 )!
@@ -67,7 +57,7 @@ themeSelect.addEventListener('change', () => {
 const themeUpdateCallbacks: Array<(theme: string) => void> = []
 
 function updateTheme(theme: string) {
-  const color = primaryColors[theme] || primaryColors.none
+  const color = window.primaryColors[theme] || window.primaryColors.none
   document.documentElement.style.setProperty('--theme-color', color)
   themeMeta.content = color
 

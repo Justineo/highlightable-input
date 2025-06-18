@@ -18,6 +18,7 @@ export default defineComponent({
     multiline: Boolean,
     readonly: Boolean,
     disabled: Boolean,
+    rows: Number,
     theme: String,
     highlight: {
       type: Object as PropType<SetupOptions['highlight']>,
@@ -92,7 +93,8 @@ export default defineComponent({
         'aria-multiline': props.multiline || null,
         'aria-readonly': props.readonly || null,
         'aria-disabled': props.disabled || null,
-        'data-theme': props.theme || null
+        'data-theme': props.theme || null,
+        'data-rows': props.rows || null
       })
   }
 })
