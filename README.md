@@ -140,11 +140,12 @@ Available themes:
 - `carbon` ([Carbon Design System](https://carbondesignsystem.com))
 - `chakra` ([Chakra UI](https://chakra-ui.com))
 - `fluent` ([Fluent UI](https://developer.microsoft.com/fluentui))
+- `kongponents` ([Kongponents](https://kongponents.konghq.com/))
 - `lightning` ([Lightning Design System](https://www.lightningdesignsystem.com))
 - `semi` ([Semi Design](https://semi.design))
 - `spectrum` ([Spectrum Design System](https://spectrum.adobe.com))
 
-You can add more themes or refine current themes [here](https://github.com/Justineo/highlightable-input/tree/main/packages/highlightable-input/src/styles/themes).
+You can add more themes or [refine current themes here](https://github.com/Justineo/highlightable-input/tree/main/packages/highlightable-input/src/styles/themes).
 
 You can also add your own theme in your own project:
 
@@ -177,7 +178,7 @@ highlightable-input[data-theme='custom']:focus {
   /* focus styles */
 }
 
-highlightable-input[data-theme='light'][aria-disabled='true'] {
+highlightable-input[data-theme='custom'][aria-disabled='true'] {
   /* disabled styles */
 }
 ```

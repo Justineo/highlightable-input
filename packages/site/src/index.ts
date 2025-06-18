@@ -11,6 +11,7 @@ import 'highlightable-input/themes/bootstrap.css'
 import 'highlightable-input/themes/carbon.css'
 import 'highlightable-input/themes/chakra.css'
 import 'highlightable-input/themes/fluent.css'
+import 'highlightable-input/themes/kongponents.css'
 import 'highlightable-input/themes/lightning.css'
 import 'highlightable-input/themes/semi.css'
 import 'highlightable-input/themes/spectrum.css'
@@ -49,6 +50,7 @@ const primaryColors: Record<string, string> = {
   carbon: '#0f62fe',
   chakra: '#309795',
   fluent: '#0178d4',
+  kongponents: '#0044f4',
   lightning: '#0176d3',
   semi: '#0064fa',
   spectrum: '#0868e3'

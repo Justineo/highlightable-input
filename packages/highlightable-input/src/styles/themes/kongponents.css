@@ -1,0 +1,58 @@
+highlightable-input[data-theme='kongponents'] {
+  box-sizing: border-box;
+  width: 100%;
+  outline: none;
+  border: 0;
+  padding: var(--kui-space-40, 8px) var(--kui-space-50, 12px);
+  border-radius: var(--kui-border-radius-30, 6px);
+  box-shadow: var(--kui-shadow-border, 0px 0px 0px 1px #e0e4ea inset);
+  background-color: var(--kui-color-background, #ffffff);
+  color: var(--kui-color-text, #000933);
+  font-family: var(--kui-font-family-text, Inter, Roboto, Helvetica, sans-serif);
+  font-size: var(--kui-font-size-40, 16px);
+  font-weight: var(--kui-font-weight-regular, 400);
+  line-height: var(--kui-line-height-40, 24px);
+  text-overflow: ellipsis;
+  transition: box-shadow var(--kui-animation-duration-20, .2s) ease-in-out;
+}
+
+highlightable-input[data-theme='kongponents'][aria-multiline='true'] {
+  max-height: calc(100vh - 200px);
+  min-height: calc(var(--kui-line-height-40, 24px) * 2 + var(--kui-space-40, 8px) * 2);
+  resize: none;
+}
+
+highlightable-input[data-theme='kongponents'][aria-placeholder]::before {
+  color: transparent;
+}
+
+highlightable-input[data-theme='kongponents'][aria-placeholder]:empty::before {
+  color: var(--kui-color-text-neutral, #6c7489);
+}
+
+highlightable-input[data-theme='kongponents']:hover {
+  box-shadow: var(--kui-shadow-border-primary-weak, 0px 0px 0px 1px #5f9aff inset);
+}
+
+highlightable-input[data-theme='kongponents'][aria-readonly='true'] {
+  background-color: var(--kui-color-background-neutral-weakest, #f9fafb);
+  box-shadow: var(--kui-shadow-border, 0px 0px 0px 1px #e0e4ea inset);
+  color: var(--kui-color-text-neutral-strong, #52596e);
+}
+
+highlightable-input[data-theme='kongponents']:focus {
+  box-shadow: var(--kui-shadow-border-primary, 0px 0px 0px 1px #0044f4 inset), var(--kui-shadow-focus, 0px 0px 0px 4px rgba(0, 68, 244, .2));
+}
+
+highlightable-input[data-theme='kongponents'][aria-disabled='true'] {
+  background-color: var(--kui-color-background-disabled, #e0e4ea) !important;
+  box-shadow: var(--kui-shadow-border-disabled, 0px 0px 0px 1px #e0e4ea inset) !important;
+  color: var(--kui-color-text-disabled, #afb7c5) !important;
+  cursor: not-allowed;
+}
+
+@media (min-width: 640px) {
+  highlightable-input[data-theme='kongponents'] {
+    font-size: var(--kui-font-size-30, 14px);
+  }
+}

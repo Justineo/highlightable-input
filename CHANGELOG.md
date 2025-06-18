@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+
+- Added a new theme `kongponents`.
+
 ## 0.2.3
 
 - Removed `console.log` during user input.

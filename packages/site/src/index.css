@@ -9,6 +9,7 @@ html {
     Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 100%;
+  scrollbar-width: thin;
 }
 
 body {

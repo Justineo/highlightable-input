@@ -8,17 +8,17 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/react": "^18.0.24",
-    "@types/react-dom": "^18.0.8",
-    "@vercel/analytics": "^0.1.5",
-    "@vitejs/plugin-react": "^4.0.3",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "@types/react": "^18.3.23",
+    "@types/react-dom": "^18.3.7",
+    "@vercel/analytics": "^0.1.11",
+    "@vitejs/plugin-react": "^4.5.2",
+    "@vitejs/plugin-vue": "^4.6.2",
     "highlightable-input": "workspace:*",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.4",
-    "vue": "^3.2.45",
-    "vue-tsc": "^1.8.5"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.8.3",
+    "vite": "^4.5.14",
+    "vue": "^3.5.16",
+    "vue-tsc": "^1.8.27"
   }
 }
