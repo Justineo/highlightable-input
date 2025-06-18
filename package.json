@@ -1,6 +1,6 @@
 {
   "name": "@highlightable-input/repo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "release": "bumpp package.json packages/*/package.json --commit --push --tag && pnpm -r publish --access public"
