@@ -20,6 +20,8 @@ body {
 }
 
 main {
+  padding: 24px 64px 24px 32px;
+  gap: 32px;
   flex-grow: 1;
 }
 
@@ -77,7 +79,6 @@ highlightable-input {
   grid-template-columns: repeat(2, 400px);
   grid-auto-rows: auto;
   gap: 24px;
-  padding: 24px 64px 24px 200px;
 }
 
 .row {
@@ -85,9 +86,10 @@ highlightable-input {
 }
 
 #theme {
-  position: absolute;
-  left: 32px;
-  top: 72px;
+  position: sticky;
+  top: 24px;
+  float: left;
+  margin-right: 32px;
 }
 
 select {

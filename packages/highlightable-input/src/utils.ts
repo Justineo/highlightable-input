@@ -18,3 +18,20 @@ export function setFocusable(el: HTMLElement, value: boolean) {
 export function setRows(el: HTMLElement, value: number) {
   el.style.setProperty('--rows', value.toString())
 }
+
+const ESCAPE_LOOKUP: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;'
+}
+
+const ESCAPE_PATTERN = /[&<>"']/g
+
+export function escapeHTML(text: string): string {
+  ESCAPE_PATTERN.lastIndex = 0
+  return ESCAPE_PATTERN.test(text)
+    ? text.replace(ESCAPE_PATTERN, (char) => ESCAPE_LOOKUP[char])
+    : text
+}

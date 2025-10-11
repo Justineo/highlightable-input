@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.1
+
+- Escape raw input before highlighting to prevent XSS while preserving rich markup.
+
 ## 0.4.0
 
 - Added `data-rows` attribute support for vanilla version and `rows` prop for Vue/React components.

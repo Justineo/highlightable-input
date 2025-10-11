@@ -10,7 +10,7 @@ import {
   isRedoShortcut,
   restoreResizing
 } from './browser'
-import { setFocusable, setContentEditable, setRows } from './utils'
+import { setFocusable, setContentEditable, setRows, escapeHTML } from './utils'
 import {
   getSelection,
   setSelection,
@@ -304,7 +304,8 @@ export function setup(
   }
 
   function performHighlight(text: string) {
-    let result = text
+    // Escape HTML first to prevent XSS
+    let result = escapeHTML(text)
 
     if (typeof highlight === 'function') {
       result = highlight(result)
