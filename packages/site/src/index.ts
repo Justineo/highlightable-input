@@ -1,4 +1,5 @@
 import { setup } from 'highlightable-input'
+import { inject } from '@vercel/analytics'
 import { tweet, color, variable } from './rules'
 import mountVueApp from './vue'
 import mountReactApp from './react'
@@ -15,6 +16,8 @@ import 'highlightable-input/themes/light.css'
 import 'highlightable-input/themes/lightning.css'
 import 'highlightable-input/themes/semi.css'
 import 'highlightable-input/themes/spectrum.css'
+
+inject()
 
 declare global {
   interface Window {
