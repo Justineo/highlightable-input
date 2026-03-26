@@ -1,0 +1,30 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "ignorePresets": ["group:monorepos", "group:recommended"],
+  "timezone": "Asia/Shanghai",
+  "schedule": ["before 6am on monday"],
+  "minimumReleaseAge": "7 days",
+  "updateNotScheduled": false,
+  "packageRules": [
+    {
+      "description": "Group all patch updates into a single weekly PR.",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "all patch dependencies",
+      "groupSlug": "all-patch-dependencies"
+    },
+    {
+      "description": "Group all minor updates into a single weekly PR.",
+      "matchUpdateTypes": ["minor"],
+      "groupName": "all minor dependencies",
+      "groupSlug": "all-minor-dependencies"
+    },
+    {
+      "description": "Keep Vite core and official plugins in the same major upgrade PR.",
+      "matchPackageNames": ["vite", "@vitejs/plugin-react", "@vitejs/plugin-vue"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "vite ecosystem major dependencies",
+      "groupSlug": "vite-ecosystem-major-dependencies"
+    }
+  ]
+}
