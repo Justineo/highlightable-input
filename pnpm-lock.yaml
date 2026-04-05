@@ -34,13 +34,13 @@ importers:
         version: 18.3.1(react@18.3.1)
       tsup:
         specifier: ^7.2.0
-        version: 7.2.0(postcss@8.5.8)(typescript@5.8.3)
+        version: 7.2.0(postcss@8.5.8)(typescript@6.0.2)
       typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^6.0.0
+        version: 6.0.2
       vue:
         specifier: ^3.5.16
-        version: 3.5.30(typescript@5.8.3)
+        version: 3.5.30(typescript@6.0.2)
 
   packages/site:
     devDependencies:
@@ -58,7 +58,7 @@ importers:
         version: 6.0.1(vite@8.0.2(jiti@2.6.1)(yaml@2.8.3))
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
-        version: 6.0.5(vite@8.0.2(jiti@2.6.1)(yaml@2.8.3))(vue@3.5.30(typescript@5.8.3))
+        version: 6.0.5(vite@8.0.2(jiti@2.6.1)(yaml@2.8.3))(vue@3.5.30(typescript@6.0.2))
       highlightable-input:
         specifier: workspace:*
         version: link:../highlightable-input
@@ -69,17 +69,17 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^6.0.0
+        version: 6.0.2
       vite:
         specifier: ^8.0.2
         version: 8.0.2(jiti@2.6.1)(yaml@2.8.3)
       vue:
         specifier: ^3.5.16
-        version: 3.5.30(typescript@5.8.3)
+        version: 3.5.30(typescript@6.0.2)
       vue-tsc:
         specifier: ^1.8.27
-        version: 1.8.27(typescript@5.8.3)
+        version: 1.8.27(typescript@6.0.2)
 
 packages:
 
@@ -1170,8 +1170,8 @@ packages:
       typescript:
         optional: true
 
-  typescript@5.8.3:
-    resolution: {integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ==}
+  typescript@6.0.2:
+    resolution: {integrity: sha512-bGdAIrZ0wiGDo5l8c++HWtbaNCWTS4UTv7RaTH/ThVIgjkveJt83m74bBHMJkuCbslY8ixgLBVZJIOiQlQTjfQ==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -1510,11 +1510,11 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-rc.7
       vite: 8.0.2(jiti@2.6.1)(yaml@2.8.3)
 
-  '@vitejs/plugin-vue@6.0.5(vite@8.0.2(jiti@2.6.1)(yaml@2.8.3))(vue@3.5.30(typescript@5.8.3))':
+  '@vitejs/plugin-vue@6.0.5(vite@8.0.2(jiti@2.6.1)(yaml@2.8.3))(vue@3.5.30(typescript@6.0.2))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.2
       vite: 8.0.2(jiti@2.6.1)(yaml@2.8.3)
-      vue: 3.5.30(typescript@5.8.3)
+      vue: 3.5.30(typescript@6.0.2)
 
   '@volar/language-core@1.11.1':
     dependencies:
@@ -1572,7 +1572,7 @@ snapshots:
       '@vue/compiler-dom': 3.5.30
       '@vue/shared': 3.5.30
 
-  '@vue/language-core@1.8.27(typescript@5.8.3)':
+  '@vue/language-core@1.8.27(typescript@6.0.2)':
     dependencies:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
@@ -1584,7 +1584,7 @@ snapshots:
       path-browserify: 1.0.1
       vue-template-compiler: 2.7.16
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 6.0.2
 
   '@vue/reactivity@3.5.30':
     dependencies:
@@ -1602,11 +1602,11 @@ snapshots:
       '@vue/shared': 3.5.30
       csstype: 3.2.3
 
-  '@vue/server-renderer@3.5.30(vue@3.5.30(typescript@5.8.3))':
+  '@vue/server-renderer@3.5.30(vue@3.5.30(typescript@6.0.2))':
     dependencies:
       '@vue/compiler-ssr': 3.5.30
       '@vue/shared': 3.5.30
-      vue: 3.5.30(typescript@5.8.3)
+      vue: 3.5.30(typescript@6.0.2)
 
   '@vue/shared@3.5.16': {}
 
@@ -2179,7 +2179,7 @@ snapshots:
   tslib@2.8.1:
     optional: true
 
-  tsup@7.2.0(postcss@8.5.8)(typescript@5.8.3):
+  tsup@7.2.0(postcss@8.5.8)(typescript@6.0.2):
     dependencies:
       bundle-require: 4.2.1(esbuild@0.18.20)
       cac: 6.7.14
@@ -2197,12 +2197,12 @@ snapshots:
       tree-kill: 1.2.2
     optionalDependencies:
       postcss: 8.5.8
-      typescript: 5.8.3
+      typescript: 6.0.2
     transitivePeerDependencies:
       - supports-color
       - ts-node
 
-  typescript@5.8.3: {}
+  typescript@6.0.2: {}
 
   unconfig-core@7.5.0:
     dependencies:
@@ -2234,22 +2234,22 @@ snapshots:
       de-indent: 1.0.2
       he: 1.2.0
 
-  vue-tsc@1.8.27(typescript@5.8.3):
+  vue-tsc@1.8.27(typescript@6.0.2):
     dependencies:
       '@volar/typescript': 1.11.1
-      '@vue/language-core': 1.8.27(typescript@5.8.3)
+      '@vue/language-core': 1.8.27(typescript@6.0.2)
       semver: 7.7.2
-      typescript: 5.8.3
+      typescript: 6.0.2
 
-  vue@3.5.30(typescript@5.8.3):
+  vue@3.5.30(typescript@6.0.2):
     dependencies:
       '@vue/compiler-dom': 3.5.30
       '@vue/compiler-sfc': 3.5.30
       '@vue/runtime-dom': 3.5.30
-      '@vue/server-renderer': 3.5.30(vue@3.5.30(typescript@5.8.3))
+      '@vue/server-renderer': 3.5.30(vue@3.5.30(typescript@6.0.2))
       '@vue/shared': 3.5.30
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 6.0.2
 
   webidl-conversions@4.0.2: {}
 
