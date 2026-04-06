@@ -12,5 +12,9 @@ export default defineConfig({
   sourcemap: false,
   clean: true,
   minify: true,
-  dts: true
+  dts: {
+    compilerOptions: {
+      ignoreDeprecations: '6.0'
+    }
+  }
 })
