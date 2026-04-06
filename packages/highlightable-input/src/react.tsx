@@ -1,4 +1,5 @@
 import {
+  createElement,
   useRef,
   useEffect,
   useLayoutEffect,
@@ -6,14 +7,6 @@ import {
   useState
 } from 'react'
 import { setup, type HighlightableInput, type SetupOptions } from './index'
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      'highlightable-input': any
-    }
-  }
-}
 
 type HighlightableInputProps = {
   defaultValue?: string
@@ -98,17 +91,15 @@ const Component = (props: HighlightableInputProps) => {
     input.current?.setValue(value)
   }
 
-  return (
-    <highlightable-input
-      ref={root}
-      aria-multiline={props.multiline || null}
-      aria-readonly={props.readonly || null}
-      aria-disabled={props.disabled || null}
-      data-theme={props.theme || null}
-      data-rows={props.rows || null}
-      {...restProps}
-    />
-  )
+  return createElement('highlightable-input', {
+    ...restProps,
+    ref: root,
+    'aria-multiline': multiline || null,
+    'aria-readonly': readonly || null,
+    'aria-disabled': disabled || null,
+    'data-theme': theme || null,
+    'data-rows': rows || null
+  })
 }
 Component.displayName = 'HighlightableInput'
 
