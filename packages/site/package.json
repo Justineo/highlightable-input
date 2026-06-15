@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/react": "^19.2.16",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vercel/analytics": "^2.0.1",
     "@vitejs/plugin-react": "^6.0.2",
@@ -20,6 +20,6 @@
     "typescript": "^6.0.3",
     "vite": "^8.0.16",
     "vue": "^3.5.35",
-    "vue-tsc": "^3.3.3"
+    "vue-tsc": "^3.3.4"
   }
 }
