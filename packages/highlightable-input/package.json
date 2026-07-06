@@ -53,7 +53,7 @@
     "react-dom": "^19.2.7",
     "tsup": "^8.5.1",
     "typescript": "^6.0.3",
-    "vue": "^3.5.38"
+    "vue": "^3.5.39"
   },
   "peerDependencies": {
     "react": ">=16.9.0",
