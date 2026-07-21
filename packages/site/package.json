@@ -13,7 +13,7 @@
     "@types/react-dom": "^19.2.3",
     "@vercel/analytics": "^2.0.1",
     "@vitejs/plugin-react": "^6.0.3",
-    "@vitejs/plugin-vue": "^6.0.7",
+    "@vitejs/plugin-vue": "^6.0.8",
     "highlightable-input": "workspace:*",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
