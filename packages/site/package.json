@@ -17,7 +17,7 @@
     "highlightable-input": "workspace:*",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vite": "^8.1.4",
     "vue": "^3.5.39",
     "vue-tsc": "^3.3.7"
