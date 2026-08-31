@@ -10,16 +10,16 @@
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
+    "@types/react-dom": "^19.2.5",
     "@vercel/analytics": "^2.0.1",
-    "@vitejs/plugin-react": "^6.0.5",
+    "@vitejs/plugin-react": "^6.1.0",
     "@vitejs/plugin-vue": "^6.0.8",
     "highlightable-input": "workspace:*",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "typescript": "^6.0.3",
-    "vite": "^8.2.1",
+    "vite": "^8.2.2",
     "vue": "^3.5.41",
-    "vue-tsc": "^3.3.10"
+    "vue-tsc": "^3.3.11"
   }
 }
