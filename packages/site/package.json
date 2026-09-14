@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.5",
+    "@types/react-dom": "^19.2.7",
     "@vercel/analytics": "^2.0.1",
     "@vitejs/plugin-react": "^6.1.1",
     "@vitejs/plugin-vue": "^6.0.8",
