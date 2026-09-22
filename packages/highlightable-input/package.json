@@ -52,7 +52,7 @@
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
     "tsup": "^8.5.1",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue": "^3.5.42"
   },
   "peerDependencies": {
