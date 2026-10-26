@@ -13,13 +13,13 @@
     "@types/react-dom": "^19.3.0",
     "@vercel/analytics": "^2.0.1",
     "@vitejs/plugin-react": "^6.1.2",
-    "@vitejs/plugin-vue": "^6.0.9",
+    "@vitejs/plugin-vue": "^6.0.10",
     "highlightable-input": "workspace:*",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "typescript": "^6.0.3",
-    "vite": "^8.3.3",
-    "vue": "^3.5.43",
-    "vue-tsc": "^3.3.12"
+    "vite": "^8.3.4",
+    "vue": "^3.5.44",
+    "vue-tsc": "^3.3.13"
   }
 }
