@@ -27,6 +27,12 @@
       "matchUpdateTypes": ["major"],
       "groupName": null,
       "automerge": false
+    },
+    {
+      "description": "tsup 8 declaration generation requires the TypeScript compiler API available before v7",
+      "matchFileNames": ["packages/highlightable-input/package.json"],
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<7"
     }
   ]
 }
